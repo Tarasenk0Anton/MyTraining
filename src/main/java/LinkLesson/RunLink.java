@@ -1,7 +1,5 @@
 package LinkLesson;
 
-import java.util.Arrays;
-
 public class RunLink {
     public static void main(String[] args) throws Exception {
         MyArray<Integer> myArr = new MyArray<>();
@@ -13,15 +11,17 @@ public class RunLink {
         myArr.add(124, 1);
         System.out.println("Size - " + myArr.size);
 
+        /*
         try {
             System.out.println(myArr.get(-1));
         } catch (MyCustomException e) {
         }
+        */
 
         myArr.set(232, 0);
         System.out.println(myArr.get(2));
 
-        myArr.remove(150);
+        myArr.remove(124);
         System.out.println("Size - " + myArr.size);
         System.out.println(myArr.get(1));
 

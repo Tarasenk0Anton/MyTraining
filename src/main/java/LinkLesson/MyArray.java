@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class MyArray<E> {
 
-    final int ARRAY_CAPACITY = 10;
+    final private int ARRAY_CAPACITY = 10;
     int size;
     Object[] element;
 
@@ -20,7 +20,6 @@ public class MyArray<E> {
             element = addLengthToArray();
             add(e);
         }
-
     }
 
     public void add(E e, int index) {
@@ -45,7 +44,7 @@ public class MyArray<E> {
 
     }
 
-    public Object[] addLengthToArray() {
+    private Object[] addLengthToArray() {
         Object[] newArray = new Object[element.length + 10];
         System.arraycopy(element, 0, newArray, 0, element.length);
         return newArray;
@@ -73,21 +72,27 @@ public class MyArray<E> {
     }
 
     public int indexOf(E value) {
-        return Arrays.asList(element).indexOf(value);
+
+        for (int i = 0; i < element.length; i++) {
+            if(value == element[i]){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void set(E value, int index) throws Exception {
-        try {
-            element[index] = value;
-        } catch(ArrayIndexOutOfBoundsException e){
-            System.out.println("try different index");
+
+        if (index < 0 || index > element.length){
+            throw new MyCustomException(index);
         }
+        element[index] = value;
     }
 
     public void remove(E e){
         int index = indexOf(e);
 
-        if (index <= 0 || index > element.length){
+        if (index < 0 || index > element.length){
             throw new MyCustomException(index);
         }
 
